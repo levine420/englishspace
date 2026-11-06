@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice | EnglishSpace</title>
+  <link rel="icon" type="image/png" href="lgo tab.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --secondary: #EC4899;
+      --accent-purple: #8B5CF6;
+      --accent-teal: #14B8A6;
+      --accent-green: #10B981;
+      --accent-orange: #F59E0B;
+      --dark-navy: #1E293B;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-blue: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: var(--bg-card);
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .logo {
+      height: 70px;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a.active {
+      color: var(--primary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .btn-header {
+      background: var(--gradient-blue);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    .page-hero {
+      background: var(--gradient-blue);
+      padding: 80px 6%;
+      text-align: center;
+      color: white;
+      margin-bottom: 48px;
+    }
+
+    .page-hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .page-hero p {
+      font-size: 18px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .container {
+      margin: 64px 6%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-header h2 .highlight {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .panel:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .quiz-question {
+      font-weight: 700;
+      margin: 24px 0 16px;
+      font-size: 17px;
+      color: var(--text-main);
+    }
+
+    .option {
+      display: block;
+      padding: 16px 20px;
+      background: var(--bg-light);
+      border: 2px solid #E2E8F0;
+      border-radius: var(--radius-sm);
+      margin: 12px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .option:hover {
+      border-color: var(--primary);
+      background: white;
+      transform: translateX(4px);
+    }
+
+    .option input {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      background: var(--gradient-blue);
+      color: rgb(255, 255, 255);
+      padding: 16px 36px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(79, 70, 229, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--gradient-hero);
+      margin-left: 12px;
+    }
+
+    footer {
+      background: var(--dark-navy);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 48px 6%;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .page-hero h1 {
+        font-size: 36px;
+      }
+
+      .section-header h2 {
+        font-size: 32px;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        padding: 16px 5%;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .container {
+        margin: 48px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="logo.png" alt="EnglishSpace Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#tujuan">Learning Goals</a>
+      <a href="materials.html">Materials</a>
+      <a href="practice.html" class="active">Practice</a>
+      <a href="evaluation.html">Evaluation</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>Practice Quiz</h1>
+    <p>Uji pemahamanmu dengan quiz interaktif ini. Jawab semua pertanyaan dan lihat hasilmu!</p>
+  </div>
+
+  <main>
+    <section class="container">
+      <div class="section-header">
+        <h2>Latihan <span class="highlight">Pemahaman</span></h2>
+        <p>Uji pemahamanmu dengan menjawab 10 pertanyaan berikut berdasarkan materi yang telah dipelajari.</p>
+      </div>
+
+      <div class="panel">
+        <form id="quiz">
+          <p class="quiz-question">1. Apa arti dari "wake up"?</p>
+          <label class="option"><input type="radio" name="q1" value="a"> Pergi tidur</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Bangun tidur</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Sarapan</label>
+
+          <p class="quiz-question">2. Pilih kalimat yang benar.</p>
+          <label class="option"><input type="radio" name="q2" value="a"> She study English every day.</label>
+          <label class="option"><input type="radio" name="q2" value="b"> She studying English every day.</label>
+          <label class="option"><input type="radio" name="q2" value="c"> She studies English every day.</label>
+
+          <p class="quiz-question">3. Simple Present Tense digunakan untuk menyatakan...</p>
+          <label class="option"><input type="radio" name="q3" value="a"> Kebiasaan dan rutinitas</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Kejadian yang sedang berlangsung saat ini
+            saja</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Kejadian yang sudah selesai di masa
+            lalu</label>
+
+          <p class="quiz-question">4. Apa arti dari "have breakfast"?</p>
+          <label class="option"><input type="radio" name="q4" value="a"> Makan malam</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Sarapan</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Makan siang</label>
+
+          <p class="quiz-question">5. Pilih kalimat yang SALAH:</p>
+          <label class="option"><input type="radio" name="q5" value="a"> I go to school every day.</label>
+          <label class="option"><input type="radio" name="q5" value="b"> He goes to school every day.</label>
+          <label class="option"><input type="radio" name="q5" value="c"> She go to school every day.</label>
+
+          <p class="quiz-question">6. "I ____ homework after school." Kata yang tepat adalah:</p>
+          <label class="option"><input type="radio" name="q6" value="a"> does</label>
+          <label class="option"><input type="radio" name="q6" value="b"> do</label>
+          <label class="option"><input type="radio" name="q6" value="c"> doing</label>
+
+          <p class="quiz-question">7. Apa arti dari "brush teeth"?</p>
+          <label class="option"><input type="radio" name="q7" value="a"> Cuci muka</label>
+          <label class="option"><input type="radio" name="q7" value="b"> Gosok gigi</label>
+          <label class="option"><input type="radio" name="q7" value="c"> Keramas</label>
+
+          <p class="quiz-question">8. "My brother ____ TV in the evening." Kata yang tepat:</p>
+          <label class="option"><input type="radio" name="q8" value="a"> watch</label>
+          <label class="option"><input type="radio" name="q8" value="b"> watchs</label>
+          <label class="option"><input type="radio" name="q8" value="c"> watches</label>
+
+          <p class="quiz-question">9. Apa arti dari "take a nap"?</p>
+          <label class="option"><input type="radio" name="q9" value="a"> Tidur siang</label>
+          <label class="option"><input type="radio" name="q9" value="b"> Tidur malam</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Bangun tidur</label>
+
+          <p class="quiz-question">10. Kata kerja mana yang TIDAK memerlukan penambahan 's/es' untuk subjek 'she'?</p>
+          <label class="option"><input type="radio" name="q10" value="a"> study</label>
+          <label class="option"><input type="radio" name="q10" value="b"> can</label>
+          <label class="option"><input type="radio" name="q10" value="c"> play</label>
+
+          <button class="btn" type="submit" style="margin-top:20px;">Periksa Jawaban</button>
+          <a href="evaluation.html" class="btn btn-secondary" id="viewEvaluation"
+            style="display:none;margin-top:20px;">Lihat Evaluasi</a>
+          <p id="feedback" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- Sentence Matching Exercise -->
+      <div class="section-header" style="margin-top:80px;">
+        <h2>Latihan <span class="highlight">Menyusun Kalimat</span></h2>
+        <p>Cocokkan kata-kata di bawah untuk membentuk kalimat bahasa Inggris yang benar!</p>
+      </div>
+
+      <div class="panel">
+        <div class="sentence-exercise">
+          <p class="sentence-prompt">🇮🇩 <b>Saya bangun pukul lima setiap pagi.</b></p>
+          <div class="word-bank" id="wordBank1">
+            <span class="word-option" data-word="morning">morning</span>
+            <span class="word-option" data-word="sleep">sleep</span>
+            <span class="word-option" data-word="I">I</span>
+            <span class="word-option" data-word="five">five</span>
+            <span class="word-option" data-word="night">night</span>
+            <span class="word-option" data-word="wake">wake</span>
+            <span class="word-option" data-word="at">at</span>
+            <span class="word-option" data-word="every">every</span>
+            <span class="word-option" data-word="up">up</span>
+          </div>
+          <div class="answer-area" id="answer1" data-correct="I wake up at five every morning"></div>
+          <button class="btn-check" onclick="checkSentence(1)">Periksa</button>
+          <p class="sentence-feedback" id="feedback1"></p>
+        </div>
+
+        <div class="sentence-exercise" style="margin-top:40px;">
+          <p class="sentence-prompt">🇮🇩 <b>Dia belajar bahasa Inggris setiap hari.</b></p>
+          <div class="word-bank" id="wordBank2">
+            <span class="word-option" data-word="day">day</span>
+            <span class="word-option" data-word="Indonesia">Indonesia</span>
+            <span class="word-option" data-word="studies">studies</span>
+            <span class="word-option" data-word="night">night</span>
+            <span class="word-option" data-word="English">English</span>
+            <span class="word-option" data-word="She">She</span>
+            <span class="word-option" data-word="study">study</span>
+            <span class="word-option" data-word="every">every</span>
+          </div>
+          <div class="answer-area" id="answer2" data-correct="She studies English every day"></div>
+          <button class="btn-check" onclick="checkSentence(2)">Periksa</button>
+          <p class="sentence-feedback" id="feedback2"></p>
+        </div>
+
+        <div class="sentence-exercise" style="margin-top:40px;">
+          <p class="sentence-prompt">🇮🇩 <b>Saya mengerjakan PR setelah sekolah.</b></p>
+          <div class="word-bank" id="wordBank3">
+            <span class="word-option" data-word="house">house</span>
+            <span class="word-option" data-word="after">after</span>
+            <span class="word-option" data-word="does">does</span>
+            <span class="word-option" data-word="school">school</span>
+            <span class="word-option" data-word="homework">homework</span>
+            <span class="word-option" data-word="I">I</span>
+            <span class="word-option" data-word="before">before</span>
+            <span class="word-option" data-word="do">do</span>
+          </div>
+          <div class="answer-area" id="answer3" data-correct="I do homework after school"></div>
+          <button class="btn-check" onclick="checkSentence(3)">Periksa</button>
+          <p class="sentence-feedback" id="feedback3"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
+  </footer>
+
+  <style>
+    .sentence-exercise {
+      margin: 20px 0;
+      padding: 24px;
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sentence-prompt {
+      font-size: 19px;
+      margin-bottom: 20px;
+      color: var(--dark-navy);
+      font-weight: 700;
+      padding: 16px;
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid #F59E0B;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 2px dashed #E2E8F0;
+    }
+
+    .word-option {
+      padding: 10px 20px;
+      background: var(--gradient-blue);
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .word-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .word-option.used {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .answer-area {
+      min-height: 60px;
+      padding: 16px;
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .answer-word {
+      padding: 8px 16px;
+      background: var(--primary);
+      color: white;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .answer-word:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-check {
+      background: #14B8A6 !important;
+      color: white !important;
+      padding: 14px 32px !important;
+      border: none !important;
+      border-radius: 25px !important;
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(20, 184, 166, 0.5) !important;
+      display: inline-block !important;
+      margin-top: 12px !important;
+    }
+
+    .btn-check:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+    }
+
+    .sentence-feedback {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+  </style>
+
+  <script>
+    let sentenceAnswers = {};
+
+    // Sentence matching functionality
+    document.querySelectorAll('.word-option').forEach(word => {
+      word.addEventListener('click', function () {
+        if (this.classList.contains('used')) return;
+
+        const exerciseNum = this.closest('.sentence-exercise').querySelector('.answer-area').id.replace('answer', '');
+        const answerArea = document.getElementById('answer' + exerciseNum);
+
+        // Add word to answer area
+        const answerWord = document.createElement('span');
+        answerWord.className = 'answer-word';
+        answerWord.textContent = this.dataset.word;
+        answerWord.dataset.word = this.dataset.word;
+
+        // Click to remove from answer
+        answerWord.addEventListener('click', function () {
+          this.remove();
+          word.classList.remove('used');
+          updateSentenceAnswer(exerciseNum);
+        });
+
+        answerArea.appendChild(answerWord);
+        this.classList.add('used');
+        updateSentenceAnswer(exerciseNum);
+      });
+    });
+
+    function updateSentenceAnswer(num) {
+      const answerArea = document.getElementById('answer' + num);
+      const words = Array.from(answerArea.querySelectorAll('.answer-word')).map(w => w.dataset.word);
+      sentenceAnswers['s' + num] = words.join(' ');
+    }
+
+    function checkSentence(num) {
+      const answerArea = document.getElementById('answer' + num);
+      const feedback = document.getElementById('feedback' + num);
+      const correct = answerArea.dataset.correct;
+      const userAnswer = sentenceAnswers['s' + num] || '';
+
+      if (!userAnswer) {
+        feedback.textContent = '⚠️ Susun kata-kata terlebih dahulu!';
+        feedback.style.background = '#FEF3C7';
+        feedback.style.color = '#F59E0B';
+        return;
+      }
+
+      if (userAnswer === correct) {
+        feedback.textContent = '✅ Benar! Kalimatmu sempurna!';
+        feedback.style.background = '#D1FAE5';
+        feedback.style.color = '#10B981';
+
+        // Save to localStorage
+        const sentenceScores = JSON.parse(localStorage.getItem('sentenceScores') || '{}');
+        sentenceScores['s' + num] = true;
+        localStorage.setItem('sentenceScores', JSON.stringify(sentenceScores));
+      } else {
+        feedback.textContent = '❌ Belum tepat. Coba lagi! Jawaban yang benar: "' + correct + '"';
+        feedback.style.background = '#FEE2E2';
+        feedback.style.color = '#EF4444';
+
+        // Save wrong answer
+        const sentenceScores = JSON.parse(localStorage.getItem('sentenceScores') || '{}');
+        sentenceScores['s' + num] = false;
+        localStorage.setItem('sentenceScores', JSON.stringify(sentenceScores));
+      }
+    }
+
+    // Multiple choice quiz
+    document.getElementById("quiz").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const answers = {
+        q1: "b", q2: "c", q3: "a", q4: "b", q5: "c",
+        q6: "b", q7: "b", q8: "c", q9: "a", q10: "b"
+      };
+
+      const questionTopics = {
+        q1: "vocabulary", q2: "grammar", q3: "grammar", q4: "vocabulary", q5: "grammar",
+        q6: "grammar", q7: "vocabulary", q8: "grammar", q9: "vocabulary", q10: "grammar"
+      };
+
+      let score = 0;
+      let answered = 0;
+      let wrongAnswers = [];
+
+      for (let question in answers) {
+        const selected = document.querySelector('input[name="' + question + '"]:checked');
+        if (selected) {
+          answered++;
+          if (selected.value === answers[question]) {
+            score++;
+          } else {
+            wrongAnswers.push({
+              question: question,
+              topic: questionTopics[question]
+            });
+          }
+        }
+      }
+
+      const feedback = document.getElementById("feedback");
+      if (answered < 10) {
+        feedback.textContent = "⚠️ Jawab semua pertanyaan terlebih dahulu, ya!";
+        feedback.style.color = "#F59E0B";
+        feedback.style.background = "#FEF3C7";
+        return;
+      }
+
+      const percentage = Math.round((score / 10) * 100);
+      feedback.textContent = "🎉 Hasil latihan: " + score + " dari 10 jawaban benar (" + percentage + "%).";
+      feedback.style.color = score >= 7 ? "#10B981" : score >= 5 ? "#F59E0B" : "#EF4444";
+      feedback.style.background = score >= 7 ? "#D1FAE5" : score >= 5 ? "#FEF3C7" : "#FEE2E2";
+
+      feedback.innerHTML += "<br><br>";
+      if (percentage >= 90) {
+        feedback.innerHTML += "🌟 Luar biasa! Kamu sudah menguasai materi dengan sempurna. Sekarang coba tulis 10 kalimat tentang rutinitasmu sendiri dan bagikan dengan teman atau guru!";
+      } else if (percentage >= 70) {
+        feedback.innerHTML += "👍 Bagus! Kamu sudah memahami sebagian besar materi. Pelajari kembali bagian yang masih keliru, lalu coba buat kalimat-kalimat sendiri untuk memperkuat pemahaman.";
+      } else if (percentage >= 50) {
+        feedback.innerHTML += "💪 Terus semangat! Kamu sudah setengah jalan. Baca kembali bagian Vocabulary dan Grammar dengan lebih teliti, kemudian ulangi latihan.";
+      } else {
+        feedback.innerHTML += "📚 Jangan menyerah! Pelajari kembali semua materi dari awal dengan lebih fokus. Catat hal-hal penting dan coba lagi. Kamu pasti bisa!";
+      }
+
+      // Save to localStorage for evaluation page
+      localStorage.setItem('quizScore', percentage);
+      localStorage.setItem('quizCorrect', score);
+      localStorage.setItem('quizTotal', 10);
+      localStorage.setItem('quizDate', new Date().toISOString());
+      localStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
+
+      // Show evaluation button
+      document.getElementById('viewEvaluation').style.display = 'inline-block';
+    });
+  </script>
+</body>
+
+</html>

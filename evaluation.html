@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation | EnglishSpace</title>
+  <link rel="icon" type="image/png" href="lgo tab.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --secondary: #EC4899;
+      --accent-purple: #8B5CF6;
+      --accent-teal: #14B8A6;
+      --accent-green: #10B981;
+      --accent-orange: #F59E0B;
+      --dark-navy: #1E293B;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-blue: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --gradient-teal: linear-gradient(135deg, #14B8A6 0%, #10B981 100%);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    header { 
+      background: var(--bg-card);
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .logo { 
+      height: 70px;
+      display: block;
+    }
+    
+    nav { 
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    nav a { 
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav a:hover { 
+      color: var(--primary);
+    }
+    
+    nav a.active {
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+    
+    .btn-header {
+      background: var(--gradient-blue);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+    
+    .page-hero {
+      background: var(--gradient-teal);
+      padding: 80px 6%;
+      text-align: center;
+      color: white;
+      margin-bottom: 48px;
+    }
+    
+    .page-hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    
+    .page-hero p {
+      font-size: 18px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .container { 
+      margin: 64px 6%;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-header h2 {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    
+    .section-header h2 .highlight {
+      background: var(--gradient-teal);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .panel { 
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .panel:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .progress-wrap { 
+      background: #E2E8F0;
+      height: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 16px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .progress { 
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-blue);
+      transition: width 0.6s ease;
+      border-radius: 20px;
+    }
+    
+    .muted {
+      color: var(--text-muted);
+    }
+    
+    .info-box {
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      padding: 24px;
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-sm);
+      margin: 24px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .stats-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+    
+    .stat-item {
+      background: var(--bg-light);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      border: 2px solid #E2E8F0;
+    }
+    
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    
+    footer { 
+      background: var(--dark-navy);
+      color: rgba(255,255,255,0.8);
+      padding: 48px 6%;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 36px; }
+      .section-header h2 { font-size: 32px; }
+      nav { display: none; }
+      .stats-box { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 560px) {
+      header { padding: 16px 5%; flex-direction: column; gap: 16px; }
+      .container { margin: 48px 5%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="EnglishSpace Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#tujuan">Learning Goals</a>
+      <a href="materials.html">Materials</a>
+      <a href="practice.html">Practice</a>
+      <a href="evaluation.html" class="active">Evaluation</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>Evaluation</h1>
+    <p>Lihat progress pembelajaranmu dan dapatkan rekomendasi untuk langkah berikutnya.</p>
+  </div>
+
+  <main>
+    <section class="container">
+      <div class="section-header">
+        <h2>Evaluasi <span class="highlight">Pembelajaran</span></h2>
+        <p>Lihat hasil latihanmu dan dapatkan rekomendasi untuk langkah belajar selanjutnya.</p>
+      </div>
+      
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px;">
+          <b style="font-size:18px;">Progress Latihan</b>
+          <b id="scoreLabel" style="font-size:18px;color:var(--primary);">Belum dikerjakan</b>
+        </div>
+        <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+        <p class="muted" id="advice" style="margin-top:20px;line-height:1.7;">Selesaikan quiz di halaman Practice untuk melihat hasil evaluasi dan mendapatkan saran belajar yang dipersonalisasi untukmu.</p>
+        
+        <div class="stats-box" id="statsBox" style="display:none;">
+          <div class="stat-item">
+            <div class="stat-number" id="correctAnswers">0</div>
+            <div class="stat-label">Jawaban Benar</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="totalQuestions">10</div>
+            <div class="stat-label">Total Soal</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="quizDate">-</div>
+            <div class="stat-label">Tanggal Quiz</div>
+          </div>
+        </div>
+        
+        <div class="info-box" style="margin-top:32px;">
+          <b style="color:var(--primary);font-size:18px;">📊 Cara Menggunakan Evaluasi</b><br><br>
+          1. <b>Kerjakan Quiz</b> - Kunjungi halaman Practice dan selesaikan semua pertanyaan<br>
+          2. <b>Lihat Hasil</b> - Hasil otomatis muncul setelah submit quiz<br>
+          3. <b>Baca Rekomendasi</b> - Dapatkan saran belajar berdasarkan skormu<br>
+          4. <b>Ulangi Materi</b> - Jika perlu, pelajari kembali bagian yang masih kurang
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
+  </footer>
+
+  <script>
+    // Load quiz results from localStorage
+    window.addEventListener('DOMContentLoaded', function() {
+      const score = localStorage.getItem('quizScore');
+      const correct = localStorage.getItem('quizCorrect');
+      const total = localStorage.getItem('quizTotal');
+      const dateStr = localStorage.getItem('quizDate');
+      const wrongAnswersStr = localStorage.getItem('wrongAnswers');
+      
+      if (score && correct && total) {
+        const percentage = parseInt(score);
+        
+        // Update score label and progress bar
+        document.getElementById("scoreLabel").textContent = percentage + "%";
+        document.getElementById("progress").style.width = percentage + "%";
+        
+        // Show stats
+        document.getElementById("statsBox").style.display = "grid";
+        document.getElementById("correctAnswers").textContent = correct;
+        document.getElementById("totalQuestions").textContent = total;
+        
+        // Format date
+        if (dateStr) {
+          const date = new Date(dateStr);
+          const formattedDate = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+          document.getElementById("quizDate").textContent = formattedDate;
+        }
+        
+        // Parse wrong answers
+        let wrongAnswers = [];
+        try {
+          wrongAnswers = JSON.parse(wrongAnswersStr || '[]');
+        } catch(e) {
+          wrongAnswers = [];
+        }
+        
+        // Update advice with corrections
+        const adviceElement = document.getElementById("advice");
+        let adviceText = "";
+        let adviceColor = "";
+        
+        if (percentage >= 90) {
+          adviceText = "🌟 Luar biasa! Kamu sudah menguasai materi dengan sempurna. Sekarang coba tulis 10 kalimat tentang rutinitasmu sendiri dan bagikan dengan teman atau guru!";
+          adviceColor = "#10B981";
+        } else if (percentage >= 70) {
+          adviceText = "👍 Bagus! Kamu sudah memahami sebagian besar materi. ";
+          adviceColor = "#10B981";
+          
+          if (wrongAnswers.length > 0) {
+            const vocabErrors = wrongAnswers.filter(a => a.topic === 'vocabulary').length;
+            const grammarErrors = wrongAnswers.filter(a => a.topic === 'grammar').length;
+            
+            if (vocabErrors > 0 && grammarErrors > 0) {
+              adviceText += "Pelajari kembali <a href='materials.html#vocabulary' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Vocabulary</a> dan <a href='materials.html#grammar' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Grammar</a>.";
+            } else if (vocabErrors > 0) {
+              adviceText += "Pelajari kembali <a href='materials.html#vocabulary' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Vocabulary</a>.";
+            } else if (grammarErrors > 0) {
+              adviceText += "Pelajari kembali <a href='materials.html#grammar' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Grammar</a>.";
+            }
+          }
+        } else if (percentage >= 50) {
+          adviceText = "💪 Terus semangat! Kamu sudah setengah jalan. ";
+          adviceColor = "#F59E0B";
+          
+          if (wrongAnswers.length > 0) {
+            const vocabErrors = wrongAnswers.filter(a => a.topic === 'vocabulary').length;
+            const grammarErrors = wrongAnswers.filter(a => a.topic === 'grammar').length;
+            
+            if (vocabErrors > 0 && grammarErrors > 0) {
+              adviceText += "Baca kembali bagian <a href='materials.html#vocabulary' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Vocabulary</a> dan <a href='materials.html#grammar' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Grammar</a> dengan lebih teliti, kemudian ulangi latihan.";
+            } else if (vocabErrors > 0) {
+              adviceText += "Baca kembali bagian <a href='materials.html#vocabulary' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Vocabulary</a> dengan lebih teliti, kemudian ulangi latihan.";
+            } else if (grammarErrors > 0) {
+              adviceText += "Baca kembali bagian <a href='materials.html#grammar' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Grammar</a> dengan lebih teliti, kemudian ulangi latihan.";
+            }
+          }
+        } else {
+          adviceText = "📚 Jangan menyerah! Pelajari kembali <a href='materials.html#vocabulary' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Vocabulary</a> dan <a href='materials.html#grammar' style='color:#4F46E5;font-weight:700;text-decoration:underline;'>Grammar</a> dari awal dengan lebih fokus. Catat hal-hal penting dan coba lagi. Kamu pasti bisa!";
+          adviceColor = "#EF4444";
+        }
+        
+        adviceElement.innerHTML = adviceText;
+        adviceElement.style.color = adviceColor;
+        
+        // Show detailed corrections if there are wrong answers
+        if (wrongAnswers.length > 0) {
+          const correctionBox = document.createElement('div');
+          correctionBox.className = 'info-box';
+          correctionBox.style.marginTop = '24px';
+          correctionBox.style.borderLeftColor = '#EF4444';
+          
+          let correctionHTML = '<b style="color:#EF4444;font-size:18px;">📝 Koreksi Jawaban Salah</b><br><br>';
+          
+          const vocabErrors = wrongAnswers.filter(a => a.topic === 'vocabulary');
+          const grammarErrors = wrongAnswers.filter(a => a.topic === 'grammar');
+          
+          if (vocabErrors.length > 0) {
+            const vocabNums = vocabErrors.map(e => e.question.replace('q', '')).join(', ');
+            correctionHTML += '❌ <b>Vocabulary (Soal nomor ' + vocabNums + '):</b> Kamu salah di soal kosakata. ';
+            correctionHTML += 'Pelajari kembali <a href="materials.html#vocabulary" style="color:#4F46E5;font-weight:700;text-decoration:underline;">daftar vocabulary</a> dan hafalkan artinya dengan baik.<br><br>';
+          }
+          
+          if (grammarErrors.length > 0) {
+            const grammarNums = grammarErrors.map(e => e.question.replace('q', '')).join(', ');
+            correctionHTML += '❌ <b>Grammar (Soal nomor ' + grammarNums + '):</b> Kamu salah di soal tata bahasa. ';
+            correctionHTML += 'Pelajari kembali <a href="materials.html#grammar" style="color:#4F46E5;font-weight:700;text-decoration:underline;">Simple Present Tense</a> dan perhatikan penggunaan s/es untuk subjek he/she/it.<br><br>';
+          }
+          
+          correctionHTML += '💡 <b>Tips:</b> Setelah membaca materi, coba kerjakan ulang quiz untuk mengukur peningkatanmu!';
+          
+          correctionBox.innerHTML = correctionHTML;
+          document.querySelector('.panel').appendChild(correctionBox);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

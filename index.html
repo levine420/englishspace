@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnglishSpace | Where Curious Minds Grow</title>
+  <link rel="icon" type="image/png" href="lgo tab.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --secondary: #EC4899;
+      --accent-purple: #8B5CF6;
+      --accent-teal: #14B8A6;
+      --accent-green: #10B981;
+      --accent-orange: #F59E0B;
+      --dark-navy: #1E293B;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-blue: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --gradient-pink: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
+      --gradient-teal: linear-gradient(135deg, #14B8A6 0%, #10B981 100%);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Header */
+    header { 
+      background: var(--bg-card);
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .logo { 
+      height: 70px;
+      display: block;
+    }
+    
+    nav { 
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    nav a { 
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav a:hover { 
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .btn-header {
+      background: var(--gradient-blue);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+    
+    /* Hero Section */
+    .hero { 
+      margin: 48px 6%;
+      padding: 80px 60px;
+      border-radius: var(--radius-lg);
+      background: var(--gradient-hero);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .hero-text { 
+      max-width: 600px;
+      z-index: 2;
+    }
+    
+    .tag { 
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 13px;
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+    }
+    
+    h1 { 
+      font-size: 56px;
+      line-height: 1.15;
+      margin: 0 0 24px 0;
+      color: white;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+    
+    h1 .highlight {
+      background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero p { 
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 32px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    
+    .hero-art { 
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 50%;
+      width: 280px;
+      height: 280px;
+      display: grid;
+      place-items: center;
+      font-size: 120px;
+      flex-shrink: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .btn { 
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: var(--primary);
+      padding: 16px 36px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .btn:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      margin-left: 16px;
+    }
+    
+    .btn-outline:hover {
+      background: white;
+      color: var(--primary);
+    }
+    
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: -60px 6% 48px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      padding: 32px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .stat-card:nth-child(1) { border-color: var(--accent-purple); }
+    .stat-card:nth-child(2) { border-color: var(--accent-teal); }
+    .stat-card:nth-child(3) { border-color: var(--accent-green); }
+    .stat-card:nth-child(4) { border-color: var(--accent-orange); }
+    
+    .stat-number {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    .stat-card:nth-child(1) .stat-number { color: var(--accent-purple); }
+    .stat-card:nth-child(2) .stat-number { color: var(--accent-teal); }
+    .stat-card:nth-child(3) .stat-number { color: var(--accent-green); }
+    .stat-card:nth-child(4) .stat-number { color: var(--accent-orange); }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    
+    /* Container */
+    .container { 
+      margin: 64px 6%;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-header h2 {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    
+    .section-header h2 .highlight {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Objectives */
+    .objectives { 
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 900px) {
+      .objectives { 
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .objective { 
+      background: var(--bg-card);
+      padding: 36px 28px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .objective::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-blue);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .objective:hover::before {
+      opacity: 0.05;
+    }
+    
+    .objective:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .objective strong { 
+      display: block;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .objective .muted {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* Steps */
+    .steps { 
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      justify-content: center;
+    }
+    
+    .step { 
+      background: var(--gradient-blue);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+    
+    /* Lesson Grid */
+    .lesson-grid { 
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 28px;
+      margin-top: 32px;
+    }
+    
+    .panel { 
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+    
+    .panel:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .lesson h3 { 
+      margin: 16px 0 12px;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    
+    .lesson p { 
+      color: var(--text-muted);
+      margin: 12px 0;
+      line-height: 1.7;
+    }
+    
+    /* Example Box */
+    .example { 
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      padding: 24px;
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .example b { 
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    /* Vocabulary */
+    .vocab-list { 
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .vocab { 
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 2px solid #E2E8F0;
+      transition: all 0.3s ease;
+    }
+    
+    .vocab:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .vocab b {
+      display: block;
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    
+    .vocab span { 
+      display: block;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    /* Visual */
+    .visual { 
+      background: var(--gradient-hero);
+      min-height: 240px;
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 80px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
+    
+    .visual small { 
+      display: block;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    
+    /* Quiz */
+    .quiz-question { 
+      font-weight: 700;
+      margin: 24px 0 16px;
+      font-size: 17px;
+      color: var(--text-main);
+    }
+    
+    .option { 
+      display: block;
+      padding: 16px 20px;
+      background: var(--bg-light);
+      border: 2px solid #E2E8F0;
+      border-radius: var(--radius-sm);
+      margin: 12px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .option:hover { 
+      border-color: var(--primary);
+      background: white;
+      transform: translateX(4px);
+    }
+    
+    .option input { 
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    
+    #feedback { 
+      margin-top: 20px;
+      font-weight: 600;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-light);
+    }
+    
+    /* Progress */
+    .progress-wrap { 
+      background: #E2E8F0;
+      height: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-top: 16px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .progress { 
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-blue);
+      transition: width 0.6s ease;
+      border-radius: 20px;
+    }
+    
+    /* Results Section */
+    .results-banner {
+      background: var(--gradient-blue);
+      padding: 48px;
+      border-radius: var(--radius-lg);
+      margin: 64px 6%;
+      box-shadow: var(--shadow-lg);
+      color: white;
+      text-align: center;
+    }
+    
+    .results-banner h2 {
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    
+    .results-banner p {
+      font-size: 18px;
+      opacity: 0.95;
+      margin-bottom: 32px;
+    }
+    
+    /* Footer */
+    footer { 
+      background: var(--dark-navy);
+      color: rgba(255,255,255,0.8);
+      padding: 48px 6%;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    footer .logo {
+      color: white;
+      margin-bottom: 16px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); margin-top: 32px; }
+      .objectives { grid-template-columns: 1fr; }
+      .lesson-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      h1 { font-size: 40px; }
+      .hero { padding: 60px 40px; flex-direction: column; text-align: center; }
+      .hero-art { width: 200px; height: 200px; font-size: 90px; }
+      .stats-grid { grid-template-columns: 1fr; margin: 32px 6%; }
+      .section-header h2 { font-size: 32px; }
+      nav { display: none; }
+    }
+    
+    @media (max-width: 560px) {
+      header { padding: 16px 5%; flex-direction: column; gap: 16px; }
+      .hero { margin: 24px 5%; padding: 40px 24px; }
+      .container { margin: 48px 5%; }
+      h1 { font-size: 32px; }
+      .vocab-list { grid-template-columns: 1fr; }
+      .results-banner { margin: 48px 5%; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="EnglishSpace Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#tujuan">Learning Goals</a>
+      <a href="materials.html">Materials</a>
+      <a href="practice.html">Practice</a>
+      <a href="evaluation.html">Evaluation</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <span class="tag">ENGLISH LEARNING • BEGINNER LEVEL</span>
+      <h1>Where curious minds grow into <span class="highlight">confident</span> speakers.</h1>
+      <p>Belajar menceritakan kegiatan sehari-hari dalam Bahasa Inggris menggunakan <b>Simple Present Tense</b>. Materi singkat, contoh dekat dengan kehidupanmu, dan latihan interaktif yang menyenangkan.</p>
+      <a class="btn" href="#tujuan">Mulai Belajar</a>
+      <a class="btn btn-outline" href="#materi">Lihat Materi</a>
+    </div>
+    
+  </section>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">25+</div>
+      <div class="stat-label">Kosakata Penting</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Materi Lengkap</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Contoh Kalimat</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">Quiz</div>
+      <div class="stat-label">Latihan Interaktif</div>
+    </div>
+  </div>
+
+  <main>
+    <section class="container" id="tujuan">
+      <div class="section-header">
+        <h2>Learning for every <span class="highlight">little step.</span></h2>
+        <p>Setelah mengikuti pembelajaran ini, kamu diharapkan mampu menguasai kemampuan berikut:</p>
+      </div>
+      <div class="objectives">
+        <div class="objective">
+          <strong>🎯 01. Mengenali Vocabulary</strong>
+          <span class="muted">Mengidentifikasi dan mengingat minimal 20 kosakata tentang kegiatan sehari-hari (daily activities) dengan pronunciation yang benar.</span>
+        </div>
+        <div class="objective">
+          <strong>✍️ 02. Memahami Grammar</strong>
+          <span class="muted">Menjelaskan dan menerapkan pola Simple Present Tense dengan benar, termasuk penggunaan s/es untuk subjek third person singular.</span>
+        </div>
+        <div class="objective">
+          <strong>💬 03. Menggunakan dalam Kalimat</strong>
+          <span class="muted">Menyusun minimal 5 kalimat lengkap tentang rutinitas pribadi menggunakan Simple Present Tense secara lisan dan tertulis.</span>
+        </div>
+        <div class="objective">
+          <strong>📝 04. Menulis Paragraf</strong>
+          <span class="muted">Membuat paragraf sederhana (minimal 50 kata) yang menceritakan kegiatan sehari-hari dengan struktur yang koheren dan runtut.</span>
+        </div>
+        <div class="objective">
+          <strong>🗣️ 05. Berkomunikasi</strong>
+          <span class="muted">Mampu menceritakan rutinitas harian kepada teman atau guru dengan percaya diri menggunakan bahasa Inggris sederhana.</span>
+        </div>
+        <div class="objective">
+          <strong>🎓 06. Evaluasi Diri</strong>
+          <span class="muted">Menilai kemampuan sendiri melalui latihan soal dan mengidentifikasi area yang masih perlu dipelajari lebih lanjut.</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p style="margin-top:12px;">© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

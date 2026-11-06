@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materials | EnglishSpace</title>
+  <link rel="icon" type="image/png" href="lgo tab.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #4F46E5;
+      --primary-dark: #4338CA;
+      --secondary: #EC4899;
+      --accent-purple: #8B5CF6;
+      --accent-teal: #14B8A6;
+      --accent-green: #10B981;
+      --accent-orange: #F59E0B;
+      --dark-navy: #1E293B;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --bg-light: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      --gradient-blue: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+    }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    header { 
+      background: var(--bg-card);
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .logo { 
+      height: 70px;
+      display: block;
+    }
+    
+    nav { 
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    nav a { 
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav a:hover { 
+      color: var(--primary);
+    }
+    
+    nav a.active {
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+    
+    .btn-header {
+      background: var(--gradient-blue);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+    
+    .page-hero {
+      background: var(--gradient-hero);
+      padding: 80px 6%;
+      text-align: center;
+      color: white;
+      margin-bottom: 48px;
+    }
+    
+    .page-hero h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    
+    .page-hero p {
+      font-size: 18px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .container { 
+      margin: 64px 6%;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-header h2 {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    
+    .section-header h2 .highlight {
+      background: var(--gradient-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .steps { 
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      justify-content: center;
+    }
+    
+    .step { 
+      background: var(--gradient-blue);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+    
+    .lesson-grid { 
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+    
+    .panel { 
+      background: var(--bg-card);
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      margin-bottom: 32px;
+    }
+    
+    .panel:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .tag { 
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 13px;
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 16px;
+      background: rgba(79, 70, 229, 0.1);
+      border-radius: 20px;
+    }
+    
+    .lesson h3 { 
+      margin: 16px 0 12px;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    
+    .lesson p { 
+      color: var(--text-muted);
+      margin: 12px 0;
+      line-height: 1.7;
+    }
+    
+    .example { 
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      padding: 24px;
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .example b { 
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .vocab-list { 
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    
+    .vocab { 
+      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 2px solid #E2E8F0;
+      transition: all 0.3s ease;
+    }
+    
+    .vocab:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .vocab b {
+      display: block;
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    
+    .vocab span { 
+      display: block;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    .visual { 
+      background: var(--gradient-hero);
+      min-height: 240px;
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 80px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .visual::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
+    
+    .visual small { 
+      display: block;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    
+    .muted {
+      color: var(--text-muted);
+    }
+    
+    footer { 
+      background: var(--dark-navy);
+      color: rgba(255,255,255,0.8);
+      padding: 48px 6%;
+      text-align: center;
+      margin-top: 80px;
+    }
+    
+    @media (max-width: 1024px) {
+      .lesson-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .page-hero h1 { font-size: 36px; }
+      .section-header h2 { font-size: 32px; }
+      nav { display: none; }
+    }
+    
+    @media (max-width: 560px) {
+      header { padding: 16px 5%; flex-direction: column; gap: 16px; }
+      .container { margin: 48px 5%; }
+      .vocab-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="EnglishSpace Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#tujuan">Learning Goals</a>
+      <a href="materials.html" class="active">Materials</a>
+      <a href="practice.html">Practice</a>
+      <a href="evaluation.html">Evaluation</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>Learning Materials</h1>
+    <p>Materi lengkap tentang Simple Present Tense untuk menceritakan kegiatan sehari-hari. Pelajari vocabulary, grammar, dan contoh penggunaannya.</p>
+  </div>
+
+  <main>
+    <section class="container">
+      <div class="section-header">
+        <h2>Materi <span class="highlight">Pembelajaran</span></h2>
+        <p>Ikuti urutan materi dari kosakata, pola kalimat, hingga contoh penggunaannya dalam kehidupan sehari-hari.</p>
+      </div>
+      
+      <div class="steps">
+        <span class="step">1. Vocabulary</span>
+        <span class="step">2. Grammar</span>
+        <span class="step">3. Examples</span>
+      </div>
+      
+      <div class="lesson-grid">
+        <article class="panel lesson" id="vocabulary">
+          <span class="tag">PART 1 • VOCABULARY</span>
+          <h3>Daily Activities (Kegiatan Sehari-hari)</h3>
+          <p>Vocabulary adalah kosakata. Berikut kata kerja yang sering digunakan untuk menceritakan rutinitas harian kamu.</p>
+          <div class="vocab-list">
+            <div class="vocab"><b>Wake up</b><span>Bangun tidur</span></div>
+            <div class="vocab"><b>Take a shower</b><span>Mandi</span></div>
+            <div class="vocab"><b>Have breakfast</b><span>Sarapan</span></div>
+            <div class="vocab"><b>Go to school</b><span>Pergi ke sekolah</span></div>
+            <div class="vocab"><b>Study</b><span>Belajar</span></div>
+            <div class="vocab"><b>Have lunch</b><span>Makan siang</span></div>
+            <div class="vocab"><b>Do homework</b><span>Mengerjakan PR</span></div>
+            <div class="vocab"><b>Have dinner</b><span>Makan malam</span></div>
+            <div class="vocab"><b>Watch TV</b><span>Menonton TV</span></div>
+            <div class="vocab"><b>Read a book</b><span>Membaca buku</span></div>
+            <div class="vocab"><b>Play games</b><span>Bermain game</span></div>
+            <div class="vocab"><b>Listen to music</b><span>Mendengarkan musik</span></div>
+            <div class="vocab"><b>Go to bed</b><span>Pergi tidur</span></div>
+            <div class="vocab"><b>Brush teeth</b><span>Gosok gigi</span></div>
+            <div class="vocab"><b>Get dressed</b><span>Berpakaian</span></div>
+            <div class="vocab"><b>Take a nap</b><span>Tidur siang</span></div>
+            <div class="vocab"><b>Clean my room</b><span>Membersihkan kamar</span></div>
+            <div class="vocab"><b>Help my parents</b><span>Membantu orang tua</span></div>
+            <div class="vocab"><b>Exercise</b><span>Berolahraga</span></div>
+            <div class="vocab"><b>Chat with friends</b><span>Ngobrol dengan teman</span></div>
+          </div>
+          <div class="example">
+            <b>Contoh Penggunaan:</b><br>
+            I wake up at five o'clock every morning.<br>
+            <span class="muted">Saya bangun pukul lima setiap pagi.</span>
+          </div>
+        </article>
+        
+        <aside class="panel" style="background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 50%, #1E40AF 100%); padding: 40px 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
+          <!-- Decorative stars -->
+          <div style="position: absolute; top: 20px; left: 30px; width: 8px; height: 8px; background: #FBBF24; border-radius: 50%;"></div>
+          <div style="position: absolute; top: 80px; right: 40px; width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%;"></div>
+          <div style="position: absolute; bottom: 100px; left: 50px; width: 4px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 50%;"></div>
+          
+          <!-- Illustration with image -->
+          <div style="text-align: center; margin-bottom: 0; position: relative; z-index: 2; width: 100%;">
+            <img src="siderefrnc.png" alt="Daily Routine Illustration" style="width: 200px; height: auto; display: block; margin: 0 auto;">
+          </div>
+          
+          <!-- Content -->
+          <div style="text-align: center; position: relative; z-index: 2; margin-top: 0;">
+            <h3 style="font-size: 28px; font-weight: 900; color: #FBBF24; margin-bottom: 8px; line-height: 1.2;">My Daily Routine</h3>
+            <p style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px;">Belajar dari aktivitasmu</p>
+            <p style="font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6;">Coba hubungkan kosakata dengan kegiatan yang benar-benar kamu lakukan setiap hari. Cara ini membantu kamu mengingat kata dengan lebih mudah dan natural.</p>
+          </div>
+        </aside>
+      </div>
+
+      <article class="panel lesson" id="grammar">
+        <span class="tag">PART 2 • GRAMMAR</span>
+        <h3>Simple Present Tense</h3>
+        <p>Simple Present Tense digunakan untuk menyatakan kebiasaan, rutinitas, atau fakta umum yang terjadi berulang kali.</p>
+        <div class="example">
+          <b>Rumus Kalimat Positif:</b><br>
+          Subject + Verb 1 (s/es) + Object/Complement
+        </div>
+        <p><b>I study English every day.</b> — Saya belajar Bahasa Inggris setiap hari.</p>
+        <p><b>She studies English every day.</b> — Dia belajar Bahasa Inggris setiap hari.</p>
+        <p class="muted"><b>💡 Tips:</b> Untuk subjek he, she, dan it, kata kerja umumnya ditambah -s atau -es di akhir kata.</p>
+      </article>
+
+      <article class="panel lesson">
+        <span class="tag">PART 3 • EXAMPLES</span>
+        <h3>Let's Make a Sentence!</h3>
+        <p>Perhatikan contoh paragraf singkat berikut yang menceritakan rutinitas harian seseorang.</p>
+        <div class="example">
+          <b>My Daily Routine</b><br><br>
+          I wake up at 5 a.m. every morning. I take a shower and have breakfast with my family. Then, I go to school by bus. I study English in the afternoon with my friends. After school, I go home and do my homework. At night, I read a book before I go to bed.
+          <hr style="border:0;border-top:2px solid #DDD6FE;margin:16px 0;">
+          <span class="muted">Saya bangun pukul 5 pagi setiap hari. Saya mandi dan sarapan bersama keluarga. Kemudian, saya pergi ke sekolah naik bis. Saya belajar Bahasa Inggris pada sore hari bersama teman-teman. Setelah sekolah, saya pulang dan mengerjakan PR. Pada malam hari, saya membaca buku sebelum tidur.</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
+  </footer>
+</body>
+</html>

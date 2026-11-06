@@ -273,6 +273,37 @@
       nav {
         display: none;
       }
+      
+      .hamburger { display: flex; }
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-main);
+        border-radius: 3px;
+      }
+      
+      nav {
+        position: fixed;
+        top: 90px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 90px);
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav a {
+        padding: 15px 0;
+        border-bottom: 1px solid #E2E8F0;
+      }
     }
 
     @media (max-width: 560px) {

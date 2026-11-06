@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* CSS Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
@@ -26,8 +27,6 @@
       --bg-card: #FFFFFF;
       --gradient-hero: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
       --gradient-blue: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-      --gradient-pink: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
-      --gradient-teal: linear-gradient(135deg, #14B8A6 0%, #10B981 100%);
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
       --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
@@ -54,7 +53,7 @@
       box-shadow: var(--shadow-sm);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.95);
     }
@@ -97,23 +96,24 @@
     nav a:hover::after {
       width: 100%;
     }
-    
-    .btn-header {
-      background: var(--gradient-blue);
-      color: white;
-      padding: 10px 24px;
-      border-radius: 25px;
-      font-weight: 600;
-      font-size: 14px;
-      border: none;
+
+    /* Hamburger Menu Button */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+      z-index: 1001;
     }
-    
-    .btn-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+
+    .hamburger span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--text-main);
+      border-radius: 3px;
+      transition: all 0.3s ease;
     }
     
     /* Hero Section */
@@ -182,28 +182,7 @@
       font-size: 18px;
       line-height: 1.7;
     }
-    
-    .hero-art { 
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(20px);
-      border-radius: 50%;
-      width: 280px;
-      height: 280px;
-      display: grid;
-      place-items: center;
-      font-size: 120px;
-      flex-shrink: 0;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 2;
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-    
+
     .btn { 
       display: inline-block;
       border: none;
@@ -284,7 +263,7 @@
       font-weight: 600;
     }
     
-    /* Container */
+    /* Container & Objectives */
     .container { 
       margin: 64px 6%;
     }
@@ -315,17 +294,10 @@
       margin: 0 auto;
     }
     
-    /* Objectives */
     .objectives { 
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-    }
-    
-    @media (max-width: 900px) {
-      .objectives { 
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
     
     .objective { 
@@ -335,24 +307,6 @@
       box-shadow: var(--shadow-md);
       transition: all 0.3s ease;
       border-left: 4px solid var(--primary);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .objective::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-blue);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .objective:hover::before {
-      opacity: 0.05;
     }
     
     .objective:hover {
@@ -372,227 +326,6 @@
       line-height: 1.6;
     }
     
-    /* Steps */
-    .steps { 
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-      justify-content: center;
-    }
-    
-    .step { 
-      background: var(--gradient-blue);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .step:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-    }
-    
-    /* Lesson Grid */
-    .lesson-grid { 
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 28px;
-      margin-top: 32px;
-    }
-    
-    .panel { 
-      background: var(--bg-card);
-      padding: 36px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s ease;
-    }
-    
-    .panel:hover {
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .lesson h3 { 
-      margin: 16px 0 12px;
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-    
-    .lesson p { 
-      color: var(--text-muted);
-      margin: 12px 0;
-      line-height: 1.7;
-    }
-    
-    /* Example Box */
-    .example { 
-      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
-      padding: 24px;
-      border-left: 5px solid var(--primary);
-      border-radius: var(--radius-sm);
-      margin: 20px 0;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .example b { 
-      color: var(--primary);
-      font-weight: 700;
-    }
-    
-    /* Vocabulary */
-    .vocab-list { 
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 20px;
-    }
-    
-    .vocab { 
-      background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-      padding: 20px;
-      border-radius: var(--radius-sm);
-      border: 2px solid #E2E8F0;
-      transition: all 0.3s ease;
-    }
-    
-    .vocab:hover {
-      border-color: var(--primary);
-      transform: translateX(4px);
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .vocab b {
-      display: block;
-      font-size: 16px;
-      color: var(--text-main);
-      margin-bottom: 4px;
-      font-weight: 700;
-    }
-    
-    .vocab span { 
-      display: block;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-    
-    /* Visual */
-    .visual { 
-      background: var(--gradient-hero);
-      min-height: 240px;
-      border-radius: var(--radius-md);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      font-size: 80px;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .visual::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    }
-    
-    .visual small { 
-      display: block;
-      font-size: 14px;
-      color: white;
-      font-weight: 600;
-      margin-top: 12px;
-    }
-    
-    /* Quiz */
-    .quiz-question { 
-      font-weight: 700;
-      margin: 24px 0 16px;
-      font-size: 17px;
-      color: var(--text-main);
-    }
-    
-    .option { 
-      display: block;
-      padding: 16px 20px;
-      background: var(--bg-light);
-      border: 2px solid #E2E8F0;
-      border-radius: var(--radius-sm);
-      margin: 12px 0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    
-    .option:hover { 
-      border-color: var(--primary);
-      background: white;
-      transform: translateX(4px);
-    }
-    
-    .option input { 
-      margin-right: 12px;
-      cursor: pointer;
-    }
-    
-    #feedback { 
-      margin-top: 20px;
-      font-weight: 600;
-      padding: 16px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-light);
-    }
-    
-    /* Progress */
-    .progress-wrap { 
-      background: #E2E8F0;
-      height: 14px;
-      border-radius: 20px;
-      overflow: hidden;
-      margin-top: 16px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .progress { 
-      height: 100%;
-      width: 0%;
-      background: var(--gradient-blue);
-      transition: width 0.6s ease;
-      border-radius: 20px;
-    }
-    
-    /* Results Section */
-    .results-banner {
-      background: var(--gradient-blue);
-      padding: 48px;
-      border-radius: var(--radius-lg);
-      margin: 64px 6%;
-      box-shadow: var(--shadow-lg);
-      color: white;
-      text-align: center;
-    }
-    
-    .results-banner h2 {
-      font-size: 38px;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-    
-    .results-banner p {
-      font-size: 18px;
-      opacity: 0.95;
-      margin-bottom: 32px;
-    }
-    
     /* Footer */
     footer { 
       background: var(--dark-navy);
@@ -602,55 +335,29 @@
       margin-top: 80px;
     }
     
-    footer .logo {
-      color: white;
-      margin-bottom: 16px;
-    }
-    
-    /* Responsive */
+    /* Responsive Breakpoints */
     @media (max-width: 1024px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); margin-top: 32px; }
-      .objectives { grid-template-columns: 1fr; }
-      .lesson-grid { grid-template-columns: 1fr; }
+      .objectives { grid-template-columns: repeat(2, 1fr); }
     }
     
     @media (max-width: 768px) {
-      h1 { font-size: 40px; }
-      .hero { padding: 60px 40px; flex-direction: column; text-align: center; }
-      .hero-art { width: 200px; height: 200px; font-size: 90px; }
-      .stats-grid { grid-template-columns: 1fr; margin: 32px 6%; }
-      .section-header h2 { font-size: 32px; }
-      nav { display: none; }
-    }
-    
-    @media (max-width: 560px) {
-      header { padding: 16px 5%; flex-direction: column; gap: 16px; }
-      .hero { margin: 24px 5%; padding: 40px 24px; }
-      .container { margin: 48px 5%; }
-      h1 { font-size: 32px; }
-      .vocab-list { grid-template-columns: 1fr; }
-      .results-banner { margin: 48px 5%; padding: 32px 24px; }
-      
       .hamburger { display: flex; }
-      .hamburger span {
-        width: 25px;
-        height: 3px;
-        background: var(--text-main);
-        border-radius: 3px;
-      }
       
       nav {
         position: fixed;
-        top: 90px;
+        top: 0;
         right: -100%;
-        width: 250px;
-        height: calc(100vh - 90px);
+        width: 260px;
+        height: 100vh;
         background: white;
         flex-direction: column;
-        padding: 20px;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        justify-content: flex-start;
+        padding: 90px 24px 30px;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.15);
         transition: right 0.3s ease;
         z-index: 999;
+        gap: 0;
       }
       
       nav.active {
@@ -658,15 +365,34 @@
       }
       
       nav a {
-        padding: 15px 0;
+        width: 100%;
+        padding: 16px 0;
         border-bottom: 1px solid #E2E8F0;
+        font-size: 16px;
       }
+
+      nav a::after { display: none; }
+
+      h1 { font-size: 38px; }
+      .hero { padding: 48px 24px; flex-direction: column; text-align: center; margin: 24px 4%; }
+      .btn-outline { margin-left: 0; margin-top: 12px; display: inline-block; }
+      .stats-grid { grid-template-columns: 1fr; margin: 32px 4%; }
+      .objectives { grid-template-columns: 1fr; }
+      .container { margin: 48px 4%; }
+      .section-header h2 { font-size: 30px; }
     }
   </style>
 </head>
 <body>
   <header>
     <img src="logo.png" alt="EnglishSpace Logo" class="logo">
+    
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <nav id="mobileNav">
       <a href="index.html">Home</a>
       <a href="#tujuan">Learning Goals</a>
@@ -675,11 +401,6 @@
       <a href="evaluation.html">Evaluation</a>
       <a href="profile.html">Profile</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
   </header>
 
   <section class="hero" id="home">
@@ -688,9 +409,8 @@
       <h1>Where curious minds grow into <span class="highlight">confident</span> speakers.</h1>
       <p>Belajar menceritakan kegiatan sehari-hari dalam Bahasa Inggris menggunakan <b>Simple Present Tense</b>. Materi singkat, contoh dekat dengan kehidupanmu, dan latihan interaktif yang menyenangkan.</p>
       <a class="btn" href="#tujuan">Mulai Belajar</a>
-      <a class="btn btn-outline" href="#materi">Lihat Materi</a>
+      <a class="btn btn-outline" href="materials.html">Lihat Materi</a>
     </div>
-    
   </section>
 
   <div class="stats-grid">
@@ -745,27 +465,23 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <p style="margin-top:12px;">© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
+    <p>© 2026 EnglishSpace • Learn a little every day and grow confidently!</p>
   </footer>
 
   <script>
-    // Mobile menu toggle
     function toggleMenu() {
       document.getElementById('mobileNav').classList.toggle('active');
     }
     
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Close mobile menu after click
           document.getElementById('mobileNav').classList.remove('active');
         }
       });

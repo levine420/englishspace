@@ -254,6 +254,31 @@
       .page-hero h1 { font-size: 36px; }
       .section-header h2 { font-size: 32px; }
       nav { display: none; }
+      
+      .hamburger { display: flex; }
+      
+      nav {
+        position: fixed;
+        top: 90px;
+        right: -100%;
+        width: 250px;
+        height: calc(100vh - 90px);
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav a {
+        padding: 15px 0;
+        border-bottom: 1px solid #E2E8F0;
+      }
       .stats-box { grid-template-columns: 1fr; }
     }
     
@@ -266,7 +291,7 @@
 <body>
   <header>
     <img src="logo.png" alt="EnglishSpace Logo" class="logo">
-    <nav>
+    <nav id="mobileNav">
       <a href="index.html">Home</a>
       <a href="index.html#tujuan">Learning Goals</a>
       <a href="materials.html">Materials</a>
@@ -274,6 +299,11 @@
       <a href="evaluation.html" class="active">Evaluation</a>
       <a href="profile.html">Profile</a>
     </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
 
   <div class="page-hero">
@@ -441,6 +471,9 @@
         }
       }
     });
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+    }
   </script>
 </body>
 </html>

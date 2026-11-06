@@ -100,6 +100,21 @@
       width: 100%;
     }
     
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-main);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
     .btn-header {
       background: var(--gradient-blue);
       color: white;
@@ -256,6 +271,12 @@
       nav { display: none; }
       
       .hamburger { display: flex; }
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-main);
+        border-radius: 3px;
+      }
       
       nav {
         position: fixed;
